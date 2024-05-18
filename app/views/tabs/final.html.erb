@@ -1,0 +1,28 @@
+<%# Final %>
+
+<%= render TabNavComponent.new do |component| %>
+  <% component.with_tab_link(text: "Dashboard", link: root_path, selected: current_page?(controller: "tabs", action: "show"), icon: "home") %>
+  <% component.with_tab_link(text: "Contacts", link: contacts_path, selected: current_page?(contacts_path), icon: "users", count: current_account.contacts) %>
+  <% component.with_tab_link(text: "Companies", link: companies_path, selected: current_page?(companies_path), icon: "building-office", count: current_account.companies) %>
+  <% component.with_tab_link(text: "Tasks", link: tasks_path, selected: current_page?(tasks_path), icon: "pencil-square", count: current_account.tasks) %>
+
+  <% if current_account.plan == "pro" %>
+    <% component.with_tab_link(text: "Reports", link: tasks_path, selected: current_page?(reports_path), icon: "chart-bar", count: current_account.tasks) %>
+  <% else %>
+    <% component.with_tab_disabled(text: "Reports", icon: "chart-bar", tooltip: "Reports are only available on the Pro plan.") %>
+  <% end %>
+
+  <% if current_user.admin? %>
+    <% component.with_tab_dropdown(text: "Settings", selected: current_page?(settings_path), icon: "cog-6-tooth") do |d| %>
+      <% d.with_item(text: "Collaborators", link: settings_collaborators_path) %>
+      <% d.with_item(text: "Notifications", link: settings_notifications_path) %>
+    <% end %>
+  <% end %>
+
+  <% component.with_extra do %>
+    <%= link_to "/help", target: "_blank", class: "group whitespace-nowrap flex items-center space-x-1 leading-none py-3 px-3 border border-transparent border-b-gray-400" do %>
+      <%= tag.span("Help", class: "text-gray-500 group-hover:text-gray-600") %>
+      <%= tag.span(render("icons/arrow-top-right-on-square"), class: "text-gray-400") %>
+    <% end %>
+  <% end %>
+<% end %>

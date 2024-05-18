@@ -1,0 +1,25 @@
+<%# Icons %>
+
+<%= tag.nav(class: "border-b border-gray-400 mb-8") do %>
+  <%= tag.div(class: "-mb-px flex flex-wrap space-x-2 md:flex-nowrap") do %>
+    <%= link_to root_path, class: "whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400" do %>
+      <%= tag.span(render("icons/home"), class: "text-gray-400") %>
+      <%= tag.span("Dashboard", class: "text-gray-500") %>
+    <% end %>
+
+    <%= link_to contacts_path, class: "whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400" do %>
+      <%= tag.span(render("icons/users"), class: "text-gray-400") %>
+      <%= tag.span("Contacts", class: "text-gray-500") %>
+    <% end %>
+
+    <%= link_to companies_path, class: "whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400" do %>
+      <%= tag.span(render("icons/building-office"), class: "text-gray-400") %>
+      <%= tag.span("Companies", class: "text-gray-500") %>
+    <% end %>
+
+    <%= link_to tasks_path, class: "whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400" do %>
+      <%= tag.span(render("icons/pencil-square"), class: "text-gray-400") %>
+      <%= tag.span("Tasks", class: "text-gray-500") %>
+    <% end %>
+  <% end %>
+<% end %>

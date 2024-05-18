@@ -1,0 +1,10 @@
+<%# Initial %>
+
+<%= tag.nav(class: "border-b border-gray-400 mb-8") do %>
+  <%= tag.div(class: "-mb-px flex flex-wrap space-x-2 md:flex-nowrap") do %>
+    <%= link_to "Dashboard", root_path, class: "whitespace-nowrap flex items-center rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 text-gray-500" %>
+    <%= link_to "Contacts", contacts_path, class: "whitespace-nowrap flex items-center rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 text-gray-500" %>
+    <%= link_to "Companies", companies_path, class: "whitespace-nowrap flex items-center rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 text-gray-500" %>
+    <%= link_to "Tasks", root_path, class: "whitespace-nowrap flex items-center rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 text-gray-500" %>
+  <% end %>
+<% end %>

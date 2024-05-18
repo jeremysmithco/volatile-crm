@@ -1,0 +1,13 @@
+<%= tag.span data: { controller: "toggle", toggle_toggle_class: "hidden" }, class: "relative" do %>
+  <%= tag.button(class: "h-full group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if selected}", data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" }) do %>
+    <%= tag.span(render("icons/#{icon}"), class: "text-gray-400") if icon.present? %>
+    <%= tag.span(text, class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if selected}") %>
+    <%= tag.span(render("icons/chevron-down"), class: "text-gray-400") %>
+  <% end %>
+
+  <%= tag.div(class: "hidden z-40 absolute mt-1 w-60 rounded border border-gray-300 shadow-lg py-1 bg-white divide-y divide-gray-200", data: { toggle_target: "toggleable" }) do %>
+    <% items.each do |item| %>
+      <%= item %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,55 @@
+<%# Settings dropdown %>
+
+<%= tag.nav(class: "border-b border-gray-400 mb-8") do %>
+  <%= tag.div(class: "-mb-px flex flex-wrap space-x-2 md:flex-nowrap") do %>
+    <%= link_to root_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if current_page?(controller: "tabs", action: "show")}" do %>
+      <%= tag.span(render("icons/home"), class: "text-gray-400") %>
+      <%= tag.span("Dashboard", class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if current_page?(controller: "tabs", action: "show")}") %>
+    <% end %>
+
+    <%= link_to contacts_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if current_page?(contacts_path)}" do %>
+      <%= tag.span(render("icons/users"), class: "text-gray-400") %>
+      <%= tag.span("Contacts", class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if current_page?(contacts_path)}") %>
+      <%= tag.span(current_account.contacts, class: "text-xs leading-none p-1 rounded bg-gray-200 text-gray-600") %>
+    <% end %>
+
+    <%= link_to companies_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if current_page?(companies_path)}" do %>
+      <%= tag.span(render("icons/building-office"), class: "text-gray-400") %>
+      <%= tag.span("Companies", class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if current_page?(companies_path)}") %>
+      <%= tag.span(current_account.companies, class: "text-xs leading-none p-1 rounded bg-gray-200 text-gray-600") %>
+    <% end %>
+
+    <%= link_to tasks_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if current_page?(tasks_path)}" do %>
+      <%= tag.span(render("icons/pencil-square"), class: "text-gray-400") %>
+      <%= tag.span("Tasks", class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if current_page?(tasks_path)}") %>
+      <%= tag.span(current_account.tasks, class: "text-xs leading-none p-1 rounded bg-gray-200 text-gray-600") %>
+    <% end %>
+
+    <% if current_account.plan == "pro" %>
+      <%= link_to reports_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if current_page?(reports_path)}" do %>
+        <%= tag.span(render("icons/chart-bar"), class: "text-gray-400") %>
+        <%= tag.span("Reports", class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if current_page?(messages_path)}") %>
+      <% end %>
+    <% else %>
+      <%= tag.span data: { controller: "tooltip", tooltip_content_value: "Reports are only available on the Pro plan." }, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-200 border-b-gray-400 hover:bg-gray-50 cursor-not-allowed" do %>
+        <%= tag.span(render("icons/chart-bar"), class: "text-gray-300") %>
+        <%= tag.span("Reports", class: "text-gray-400 group-hover:text-gray-500") %>
+      <% end %>
+    <% end %>
+
+    <% if current_user.admin? %>
+      <%= tag.span data: { controller: "toggle", toggle_toggle_class: "hidden" }, class: "relative" do %>
+        <%= tag.button(class: "h-full group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if current_page?(settings_path)}", data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" }) do %>
+          <%= tag.span(render("icons/cog-6-tooth"), class: "text-gray-400") %>
+          <%= tag.span("Settings", class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if current_page?(settings_path)}") %>
+          <%= tag.span(render("icons/chevron-down"), class: "text-gray-400") %>
+        <% end %>
+
+        <%= tag.div(class: "hidden z-40 absolute mt-1 w-60 rounded border border-gray-300 shadow-lg py-1 bg-white divide-y divide-gray-200", data: { toggle_target: "toggleable" }) do %>
+          <%= link_to "Collaborators", settings_collaborators_path, class: "block w-full text-left py-1 px-2 text-gray-500 hover:text-gray-600 hover:bg-gray-50" %>
+          <%= link_to "Notifications", settings_notifications_path, class: "block w-full text-left py-1 px-2 text-gray-500 hover:text-gray-600 hover:bg-gray-50" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
