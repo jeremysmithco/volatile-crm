@@ -1,5 +1,0 @@
-<%= link_to link, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-300 border-b-gray-400 hover:bg-gray-50 #{"border-b-red-400" if selected}" do %>
-  <%= tag.span(render("icons/#{icon}"), class: "text-gray-400") if icon.present? %>
-  <%= tag.span(text, class: "text-gray-500 group-hover:text-gray-600 #{"font-semibold" if selected}") %>
-  <%= tag.span(count, class: "text-xs leading-none p-1 rounded bg-gray-200 text-gray-600") if count.present? %>
-<% end %>

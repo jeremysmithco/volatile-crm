@@ -1,0 +1,5 @@
+<%= link_to link, class: tab_classes do %>
+  <%= tag.span(icon_svg, class: icon_classes) if icon.present? %>
+  <%= tag.span(text, class: text_classes) %>
+  <%= tag.span(counter, class: counter_classes) if counter.present? %>
+<% end %>

@@ -1,4 +1,0 @@
-<%= tag.span data: { controller: "tooltip", tooltip_content_value: tooltip }, class: "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border border-gray-200 border-b-gray-400 hover:bg-gray-50 cursor-not-allowed" do %>
-  <%= tag.span(render("icons/#{icon}"), class: "text-gray-300") if icon.present? %>
-  <%= tag.span(text, class: "text-gray-400 group-hover:text-gray-500") %>
-<% end %>

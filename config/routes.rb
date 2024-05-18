@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :reports
   resources :settings
+  resources :searches
 
   namespace :settings do
     resources :collaborators

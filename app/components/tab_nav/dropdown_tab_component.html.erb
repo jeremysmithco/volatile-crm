@@ -1,0 +1,13 @@
+<%= tag.span data: { controller: "toggle", toggle_toggle_class: hidden_class }, class: wrapper_classes do %>
+  <%= tag.button(class: tab_classes, data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" }) do %>
+    <%= tag.span(icon_svg, class: icon_classes) if icon.present? %>
+    <%= tag.span(text, class: text_classes) %>
+    <%= tag.span(caret_svg, class: caret_classes) %>
+  <% end %>
+
+  <%= tag.div(class: menu_classes, data: { toggle_target: "toggleable" }) do %>
+    <% items.each do |item| %>
+      <%= item %>
+    <% end %>
+  <% end %>
+<% end %>

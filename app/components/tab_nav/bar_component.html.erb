@@ -1,0 +1,13 @@
+<%= tag.nav(class: nav_classes) do %>
+  <%= tag.div(class: section_classes) do %>
+    <% tabs.each do |tab| %>
+      <%= tab %>
+    <% end %>
+  <% end %>
+
+  <% if extra? %>
+    <%= tag.div(class: section_classes) do %>
+      <%= extra %>
+    <% end %>
+  <% end %>
+<% end %>
