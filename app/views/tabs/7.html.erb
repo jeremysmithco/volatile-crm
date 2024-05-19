@@ -51,9 +51,11 @@
     <% end %>
   <% end %>
 
-  <%= tag.div(class: "flex -mb-px space-x-2") do %>
-    <%= form_tag searches_path, method: :get do %>
-      <%= text_field_tag :query, "", placeholder: "Search", autocomplete: "off", class: "w-full text-sm border-gray-300 rounded-lg shadow-inner placeholder:text-gray-400" %>
+  <% if current_account.enabled_feature?(:search) %>
+    <%= tag.div(class: "flex -mb-px space-x-2") do %>
+      <%= form_tag searches_path, method: :get do %>
+        <%= text_field_tag :query, "", placeholder: "Search", autocomplete: "off", class: "w-full text-sm border-gray-300 rounded-lg shadow-inner placeholder:text-gray-400" %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
