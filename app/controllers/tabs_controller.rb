@@ -1,5 +1,5 @@
 class TabsController < ApplicationController
-  PAGES = (1..7).map(&:to_s).append("final").freeze
+  PAGES = (1..7).map(&:to_s).append("c", "p").freeze
 
   def show
     @id = params[:id]
