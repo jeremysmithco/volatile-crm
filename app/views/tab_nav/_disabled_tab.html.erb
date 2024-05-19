@@ -1,0 +1,5 @@
+<%# locals: (text:, icon: nil, tooltip: nil) -%>
+<%= tag.span data: { controller: "tooltip", tooltip_content_value: tooltip }, class: disabled_tab_classes do %>
+  <%= tag.span(icon_svg(icon), class: disabled_icon_classes) if icon.present? %>
+  <%= tag.span(text, class: disabled_text_classes) %>
+<% end %>

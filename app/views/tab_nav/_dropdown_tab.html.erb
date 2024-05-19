@@ -1,0 +1,12 @@
+<%# locals: (text:, icon: nil, selected: false) -%>
+<%= tag.span data: { controller: "toggle", toggle_toggle_class: dropdown_hidden_class }, class: dropdown_wrapper_classes do %>
+  <%= tag.button(class: dropdown_tab_classes(selected), data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" }) do %>
+    <%= tag.span(icon_svg(icon), class: icon_classes) if icon.present? %>
+    <%= tag.span(text, class: text_classes(selected)) %>
+    <%= tag.span(dropdown_caret_svg, class: dropdown_caret_classes) %>
+  <% end %>
+
+  <%= tag.div(class: dropdown_menu_classes, data: { toggle_target: "toggleable" }) do %>
+    <%= yield %>
+  <% end %>
+<% end %>

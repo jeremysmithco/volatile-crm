@@ -1,8 +1,8 @@
-import { Controller } from '@hotwired/stimulus';
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ['toggleable'];
-  static classes = ['toggle']
+  static targets = ["toggleable"];
+  static classes = ["toggle"];
 
   toggle() {
     this.toggleableTargets.forEach((t) => t.classList.toggle(this.toggleClass));

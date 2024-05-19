@@ -1,0 +1,6 @@
+<%# locals: (link:, text:, icon: nil, selected: false, counter: nil) -%>
+<%= link_to link, class: link_tab_classes(selected) do %>
+  <%= tag.span(icon_svg(icon), class: icon_classes) if icon.present? %>
+  <%= tag.span(text, class: text_classes(selected)) %>
+  <%= tag.span(counter, class: counter_classes) if counter.present? %>
+<% end %>
