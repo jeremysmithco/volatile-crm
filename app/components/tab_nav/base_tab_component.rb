@@ -1,7 +1,7 @@
 class TabNav::BaseTabComponent < ApplicationComponent
   private
 
-  attr_reader :text, :icon, :selected, :counter
+  attr_reader :text, :icon, :selected
 
   def text_classes
     class_names("text-gray-500 group-hover:text-gray-600", "font-semibold": selected)
@@ -13,10 +13,6 @@ class TabNav::BaseTabComponent < ApplicationComponent
 
   def icon_classes
     "text-gray-400"
-  end
-
-  def counter_classes
-    "text-xs leading-none p-1 rounded bg-gray-200 text-gray-600"
   end
 
   def tab_classes(*args)

@@ -21,10 +21,6 @@ module TabNavHelper
     "text-gray-400"
   end
 
-  def counter_classes
-    "text-xs leading-none p-1 rounded bg-gray-200 text-gray-600"
-  end
-
   def tab_classes(*args)
     class_names(tab_base, *args)
   end
@@ -93,5 +89,19 @@ module TabNavHelper
 
   def link_tab_classes(selected)
     tab_classes(tab_enabled, "#{tab_selected}": selected)
+  end
+
+  def counter_classes(counter, threshold)
+    class_names("text-xs leading-none p-1 rounded bg-gray-200 text-gray-600", threshold_classes(counter, threshold))
+  end
+
+  def threshold_classes(counter, threshold)
+    exceeds_threshold?(counter, threshold) ? "bg-red-200 text-red-600" : "bg-gray-200 text-gray-600"
+  end
+
+  def exceeds_threshold?(counter, threshold)
+    return false if counter.blank? || threshold.blank?
+
+    counter > threshold
   end
 end

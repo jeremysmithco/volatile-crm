@@ -2,7 +2,7 @@
   <% c.with_tab_link(text: "Dashboard", link: root_path, selected: current_page?(tab_path), icon: "home") %>
   <% c.with_tab_link(text: "Contacts", link: contacts_path, selected: current_page?(contacts_path), icon: "users", counter: current_account.contacts) %>
   <% c.with_tab_link(text: "Companies", link: companies_path, selected: current_page?(companies_path), icon: "building-office", counter: current_account.companies) %>
-  <% c.with_tab_link(text: "Tasks", link: tasks_path, selected: current_page?(tasks_path), icon: "pencil-square", counter: current_account.tasks) %>
+  <% c.with_tab_link(text: "Tasks", link: tasks_path, selected: current_page?(tasks_path), icon: "pencil-square", counter: current_account.tasks, threshold: 15) %>
 
   <% if current_account.plan == "pro" %>
     <% c.with_tab_link(text: "Reports", link: tasks_path, selected: current_page?(reports_path), icon: "chart-bar", counter: current_account.tasks) %>

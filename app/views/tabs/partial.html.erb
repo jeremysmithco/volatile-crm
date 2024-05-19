@@ -2,7 +2,7 @@
   <%= render "tab_nav/link_tab", text: "Dashboard", link: root_path, selected: current_page?(tab_path), icon: "home" %>
   <%= render "tab_nav/link_tab", text: "Contacts", link: contacts_path, selected: current_page?(contacts_path), icon: "users", counter: current_account.contacts %>
   <%= render "tab_nav/link_tab", text: "Companies", link: companies_path, selected: current_page?(companies_path), icon: "building-office", counter: current_account.companies %>
-  <%= render "tab_nav/link_tab", text: "Tasks", link: tasks_path, selected: current_page?(tasks_path), icon: "pencil-square", counter: current_account.tasks %>
+  <%= render "tab_nav/link_tab", text: "Tasks", link: tasks_path, selected: current_page?(tasks_path), icon: "pencil-square", counter: current_account.tasks, threshold: 15 %>
 
   <% if current_account.plan == "pro" %>
     <%= render "tab_nav/link_tab", text: "Reports", link: reports_path, selected: current_page?(reports_path), icon: "chart-bar" %>
