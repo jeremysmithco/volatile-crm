@@ -1,11 +1,11 @@
 <%# locals: (tabs:, extra: nil) -%>
-<%= tag.nav(class: nav_classes) do %>
-  <%= tag.div(class: section_classes) do %>
+<%= tag.nav(class: tab_nav_nav_classes) do %>
+  <%= tag.div(class: tab_nav_section_classes) do %>
     <%= tabs %>
   <% end %>
 
   <% if extra.present? %>
-    <%= tag.div(class: section_classes) do %>
+    <%= tag.div(class: tab_nav_section_classes) do %>
       <%= extra %>
     <% end %>
   <% end %>
