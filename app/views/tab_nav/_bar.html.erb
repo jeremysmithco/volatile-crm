@@ -1,12 +1,4 @@
-<%# locals: (tabs:, extra: nil) -%>
-<%= tag.nav(class: tab_nav_nav_classes) do %>
-  <%= tag.div(class: tab_nav_section_classes) do %>
-    <%= tabs %>
-  <% end %>
-
-  <% if extra.present? %>
-    <%= tag.div(class: tab_nav_section_classes) do %>
-      <%= extra %>
-    <% end %>
-  <% end %>
-<% end %>
+<nav class="flex justify-between space-x-2 items-start border-b border-gray-400 mb-8">
+  <%= tag.div tabs,  class: "flex -mb-px space-x-2" %>
+  <%= tag.div extra, class: "flex -mb-px space-x-2" if extra.present? %>
+</nav>
