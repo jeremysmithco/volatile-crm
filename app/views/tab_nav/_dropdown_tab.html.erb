@@ -1,7 +1,7 @@
 <%= tag.span data: { controller: "toggle", toggle_toggle_class: "hidden" }, class: "relative" do %>
-  <%= tag.button class: ["h-full", tab.classes(selected:)], data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" } do %>
-    <%= icons.render icon if icon %>
-    <%= tag.span text, class: ["text-gray-500 group-hover:text-gray-600", "font-semibold": selected] %>
+  <%= tag.button class: ["h-full", tab.classes], data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" } do %>
+    <%= tab.icon %>
+    <%= tab.text %>
     <%= icons.chevron_down %>
   <% end %>
 

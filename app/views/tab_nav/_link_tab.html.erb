@@ -1,5 +1,5 @@
-<%= link_to link, class: tab.classes(selected:) do %>
-  <%= icons.render icon if icon %>
-  <%= tag.span text, class: ["text-gray-500 group-hover:text-gray-600", "font-semibold": selected] %>
+<%= link_to link, class: tab.classes do %>
+  <%= tab.icon %>
+  <%= tab.text %>
   <%= counter %>
 <% end %>

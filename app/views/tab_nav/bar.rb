@@ -7,31 +7,43 @@ class TabNav::Bar < Struct.new(:view)
   def extra(&) = @extra ||= view.capture(&)
 
   def link_tab(text, link, selected: view.current_page?(link), icon:, counter: nil, threshold: nil)
-    partial __method__, text:, link:, selected:, icon:, counter: (Counter.new(view, counter, threshold) if counter)
+    partial __method__, tab: tab_for(text:, selected:, icon:), link:,
+      counter: (Counter.new(view, counter, threshold) if counter)
   end
 
   def disabled_tab(text, icon:, tooltip:)
-    partial __method__, text:, icon:, tooltip:
+    partial __method__, tab: tab_for(text:, icon:, disabled: true), tooltip:
   end
 
   def dropdown_tab(text, selected: false, icon:, &)
     items = view.capture(Dropdown.new(view), &)
-    partial __method__, text:, selected:, icon:, items:
+    partial __method__, tab: tab_for(text:, selected:, icon:), items:
   end
 
   private
-    def partial(key, **)
-      view.render("tab_nav/#{key}", tab: Tab.new(view), **)
-    end
+    def partial(key, **) = view.render("tab_nav/#{key}", **)
+    def tab_for(**) = Tab.new(view:, **)
 
-    class Tab < Data.define(:view)
-      def classes(disabled: false, selected: false)
+    class Tab < Data.define(:view, :text, :icon, :disabled, :selected)
+      alias disabled? disabled
+      alias selected? selected
+      def initialize(view:, text:, icon: nil, disabled: false, selected: false) = super
+
+      def classes
         view.class_names(
           "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border",
-          "border-gray-300 border-b-gray-400 hover:bg-gray-50": !disabled,
-          "border-gray-200 border-b-gray-400 cursor-not-allowed": disabled,
-          "border-b-2 border-b-red-400": selected
+          "border-gray-300 border-b-gray-400 hover:bg-gray-50":  !disabled?,
+          "border-gray-200 border-b-gray-400 cursor-not-allowed": disabled?,
+          "border-b-2 border-b-red-400": selected?
         )
+      end
+
+      def icon
+        super&.then { view.icons.render(_1, disabled:) }
+      end
+
+      def text(**)
+        view.tag.span(super(), class: ["text-gray-500 group-hover:text-gray-600", "font-semibold": selected?], **)
       end
     end
 
