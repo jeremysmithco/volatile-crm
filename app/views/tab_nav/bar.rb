@@ -34,19 +34,18 @@ class TabNav::Bar < ActionView::Partial
 
     class Counter < Data.define(:counter, :threshold)
       def to_s
-        ActionView::Partial.view.
-          tag.span counter, class: ["text-xs leading-none p-1 rounded bg-gray-200 text-gray-600", threshold_classes]
+        ActionView::Partial.view.tag.
+          span counter, class: ["text-xs leading-none p-1 rounded bg-gray-200 text-gray-600", threshold_classes]
       end
 
       private
+        def threshold_classes
+          exceeded? ? "bg-red-200 text-red-600" : "bg-gray-200 text-gray-600"
+        end
 
-      def threshold_classes
-        exceeded? ? "bg-red-200 text-red-600" : "bg-gray-200 text-gray-600"
-      end
-
-      def exceeded?
-        threshold && counter > threshold
-      end
+        def exceeded?
+          threshold && counter > threshold
+        end
     end
 
     class Dropdown < ActionView::Partial
