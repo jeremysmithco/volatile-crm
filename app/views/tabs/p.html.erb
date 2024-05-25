@@ -15,9 +15,9 @@
     <%= tab.item "Notifications", settings_notifications_path %>
   <% end if current_user.admin? %>
 
-  <% bar.extra do %>
+  <% bar.extra.if current_account.enabled_feature?(:search) do %>
     <%= form_tag searches_path, method: :get do %>
       <%= text_field_tag :query, "", placeholder: "Search", autocomplete: "off", class: "w-full text-sm border-gray-300 rounded-lg shadow-inner placeholder:text-gray-400" %>
     <% end %>
-  <% end if current_account.enabled_feature?(:search) %>
+  <% end %>
 <% end %>

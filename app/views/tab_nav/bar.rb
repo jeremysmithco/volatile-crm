@@ -1,8 +1,9 @@
 class TabNav::Bar < ActionView::Partial
+  slot :extra
+
   def render(&)
     view.render "tab_nav/bar", tabs: capture(&), extra:
   end
-  def extra(&) = @extra ||= capture(&)
 
   def link_tab(text, link, selected: current_page?(link), icon:, counter: nil, threshold: nil)
     partial __method__, text:, link:, selected:, icon:, counter: (Counter.new(counter, threshold) if counter)
