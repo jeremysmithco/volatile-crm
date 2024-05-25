@@ -6,16 +6,16 @@ class TabNav::Bar < Struct.new(:view)
   end
   def extra(&) = @extra ||= view.capture(&)
 
-  def link_tab(text, link, selected: view.current_page?(link), icon:, counter: nil, threshold: nil)
-    tab(text:, selected:, icon:).partial __method__, link:, counter: (Counter.new(view, counter, threshold) if counter)
+  def link_tab(text, link, icon:, selected: view.current_page?(link), counter: nil, threshold: nil)
+    tab(text:, icon:, selected:).partial __method__, link:, counter: (Counter.new(view, counter, threshold) if counter)
   end
 
   def disabled_tab(text, icon:, tooltip:)
     tab(text:, icon:, disabled: true).partial __method__, tooltip:
   end
 
-  def dropdown_tab(text, selected: false, icon:, &)
-    tab(text:, selected:, icon:).partial __method__, items: Dropdown.captured(view, &)
+  def dropdown_tab(text, icon:, selected: false, &)
+    tab(text:, icon:, selected:).partial __method__, items: Dropdown.captured(view, &)
   end
 
   private
