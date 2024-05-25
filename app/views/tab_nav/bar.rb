@@ -15,8 +15,7 @@ class TabNav::Bar < Struct.new(:view)
   end
 
   def dropdown_tab(text, selected: false, icon:, &)
-    items = view.capture(Dropdown.new(view), &)
-    tab(text:, selected:, icon:).partial __method__, items:
+    tab(text:, selected:, icon:).partial __method__, items: Dropdown.captured(view, &)
   end
 
   private
@@ -63,6 +62,8 @@ class TabNav::Bar < Struct.new(:view)
     end
 
     class Dropdown < Data.define(:view)
+      def self.captured(view, &) = view.capture(new(view), &)
+
       def item(text, link)
         view.link_to text, link, class: "block w-full text-left py-1.5 px-3 text-gray-500 hover:text-gray-600 hover:bg-gray-50"
       end
