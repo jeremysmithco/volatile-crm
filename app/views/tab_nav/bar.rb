@@ -7,27 +7,27 @@ class TabNav::Bar < Struct.new(:view)
   def extra(&) = @extra ||= view.capture(&)
 
   def link_tab(text, link, selected: view.current_page?(link), icon:, counter: nil, threshold: nil)
-    partial __method__, tab: tab_for(text:, selected:, icon:), link:,
-      counter: (Counter.new(view, counter, threshold) if counter)
+    tab(text:, selected:, icon:).partial __method__, link:, counter: (Counter.new(view, counter, threshold) if counter)
   end
 
   def disabled_tab(text, icon:, tooltip:)
-    partial __method__, tab: tab_for(text:, icon:, disabled: true), tooltip:
+    tab(text:, icon:, disabled: true).partial __method__, tooltip:
   end
 
   def dropdown_tab(text, selected: false, icon:, &)
     items = view.capture(Dropdown.new(view), &)
-    partial __method__, tab: tab_for(text:, selected:, icon:), items:
+    tab(text:, selected:, icon:).partial __method__, items:
   end
 
   private
-    def partial(key, **) = view.render("tab_nav/#{key}", **)
-    def tab_for(**) = Tab.new(view:, **)
+    def tab(**) = Tab.new(view:, **)
 
     class Tab < Data.define(:view, :text, :icon, :disabled, :selected)
       alias disabled? disabled
       alias selected? selected
       def initialize(view:, text:, icon: nil, disabled: false, selected: false) = super
+
+      def partial(key, **) = view.render("tab_nav/#{key}", tab: self, **)
 
       def classes
         view.class_names(
