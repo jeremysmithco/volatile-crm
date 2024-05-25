@@ -1,4 +1,4 @@
 <%= tag.span class: tab.classes(disabled: true), data: { controller: "tooltip", tooltip_content_value: tooltip } do %>
-  <%= tag.span icons.render(icon), class: "text-gray-300" if icon %>
+  <%= icons.render icon, disabled: true if icon %>
   <%= tag.span text, class: "text-gray-400" %>
 <% end %>
