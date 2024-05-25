@@ -1,12 +1,13 @@
-class TabNav::Bar < ActionView::Partial
-  slot :extra
+class TabNav::Bar < Struct.new(:view)
+  def self.render_in(view, &) = new(view).render(&)
 
   def render(&)
-    view.render "tab_nav/bar", tabs: capture(&), extra:
+    view.render "tab_nav/bar", tabs: view.capture(self, &), extra:
   end
+  def extra(&) = @extra ||= view.capture(&)
 
-  def link_tab(text, link, selected: current_page?(link), icon:, counter: nil, threshold: nil)
-    partial __method__, text:, link:, selected:, icon:, counter: (Counter.new(counter, threshold) if counter)
+  def link_tab(text, link, selected: view.current_page?(link), icon:, counter: nil, threshold: nil)
+    partial __method__, text:, link:, selected:, icon:, counter: (Counter.new(view, counter, threshold) if counter)
   end
 
   def disabled_tab(text, icon:, tooltip:)
@@ -14,17 +15,18 @@ class TabNav::Bar < ActionView::Partial
   end
 
   def dropdown_tab(text, selected: false, icon:, &)
-    partial __method__, text:, selected:, icon:, items: Dropdown.capture(&)
+    items = view.capture(Dropdown.new(view), &)
+    partial __method__, text:, selected:, icon:, items:
   end
 
   private
     def partial(key, **)
-      view.render("tab_nav/#{key}", tab: Tab.new, **)
+      view.render("tab_nav/#{key}", tab: Tab.new(view), **)
     end
 
-    class Tab < ActionView::Partial
+    class Tab < Data.define(:view)
       def classes(disabled: false, selected: false)
-        class_names(
+        view.class_names(
           "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border",
           "border-gray-300 border-b-gray-400 hover:bg-gray-50": !disabled,
           "border-gray-200 border-b-gray-400 cursor-not-allowed": disabled,
@@ -33,10 +35,9 @@ class TabNav::Bar < ActionView::Partial
       end
     end
 
-    class Counter < Data.define(:counter, :threshold)
+    class Counter < Data.define(:view, :counter, :threshold)
       def to_s
-        ActionView::Partial.view.tag.
-          span counter, class: ["text-xs leading-none p-1 rounded bg-gray-200 text-gray-600", threshold_classes]
+        view.tag.span counter, class: ["text-xs leading-none p-1 rounded bg-gray-200 text-gray-600", threshold_classes]
       end
 
       private
@@ -49,9 +50,9 @@ class TabNav::Bar < ActionView::Partial
         end
     end
 
-    class Dropdown < ActionView::Partial
+    class Dropdown < Data.define(:view)
       def item(text, link)
-        link_to text, link, class: "block w-full text-left py-1.5 px-3 text-gray-500 hover:text-gray-600 hover:bg-gray-50"
+        view.link_to text, link, class: "block w-full text-left py-1.5 px-3 text-gray-500 hover:text-gray-600 hover:bg-gray-50"
       end
     end
 end
