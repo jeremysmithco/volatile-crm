@@ -1,26 +1,23 @@
-<%= render "tab_nav/bar", tabs: capture { %>
-  <%= render "tab_nav/link_tab", text: "Dashboard", link: root_path, selected: current_page?(tab_path), icon: "home" %>
-  <%= render "tab_nav/link_tab", text: "Contacts", link: contacts_path, selected: current_page?(contacts_path), icon: "users", counter: current_account.contacts %>
-  <%= render "tab_nav/link_tab", text: "Companies", link: companies_path, selected: current_page?(companies_path), icon: "building-office", counter: current_account.companies %>
-  <%= render "tab_nav/link_tab", text: "Tasks", link: tasks_path, selected: current_page?(tasks_path), icon: "pencil-square", counter: current_account.tasks, threshold: 15 %>
+<%= render TabNav::Bar do |bar| %>
+  <%= bar.link_tab "Dashboard", tab_path,       icon: "home" %>
+  <%= bar.link_tab "Contacts",  contacts_path,  icon: "users",           counter: current_account.contacts %>
+  <%= bar.link_tab "Companies", companies_path, icon: "building-office", counter: current_account.companies %>
+  <%= bar.link_tab "Tasks",     tasks_path,     icon: "pencil-square",   counter: current_account.tasks, threshold: 15 %>
 
   <% if current_account.plan == "pro" %>
-    <%= render "tab_nav/link_tab", text: "Reports", link: reports_path, selected: current_page?(reports_path), icon: "chart-bar" %>
+    <%= bar.link_tab "Reports", reports_path, icon: "chart-bar" %>
   <% else %>
-    <%= render "tab_nav/disabled_tab", text: "Reports", icon: "chart-bar", tooltip: "Reports are only available on the Pro plan." %>
+    <%= bar.disabled_tab "Reports", icon: "chart-bar", tooltip: "Reports are only available on the Pro plan." %>
   <% end %>
 
-  <% if current_user.admin? %>
-    <%= render "tab_nav/dropdown_tab", text: "Settings", selected: current_page?(settings_path), icon: "cog-6-tooth" do %>
-      <%= render "tab_nav/dropdown_item", text: "Collaborators", link: settings_collaborators_path %>
-      <%= render "tab_nav/dropdown_item", text: "Notifications", link: settings_notifications_path %>
-    <% end %>
-  <% end %>
+  <%= bar.dropdown_tab "Settings", icon: "cog-6-tooth" do |tab| %>
+    <%= tab.item "Collaborators", settings_collaborators_path %>
+    <%= tab.item "Notifications", settings_notifications_path %>
+  <% end if current_user.admin? %>
 
-<% }, extra: capture { %>
-  <% if current_account.enabled_feature?(:search) %>
+  <% bar.extra do %>
     <%= form_tag searches_path, method: :get do %>
       <%= text_field_tag :query, "", placeholder: "Search", autocomplete: "off", class: "w-full text-sm border-gray-300 rounded-lg shadow-inner placeholder:text-gray-400" %>
     <% end %>
-  <% end %>
-<% } %>
+  <% end if current_account.enabled_feature?(:search) %>
+<% end %>

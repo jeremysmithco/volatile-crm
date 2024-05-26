@@ -1,12 +1,9 @@
-<%# locals: (text:, icon: nil, selected: false) -%>
-<%= tag.span data: { controller: "toggle", toggle_toggle_class: tab_nav_dropdown_hidden_class }, class: tab_nav_dropdown_wrapper_classes do %>
-  <%= tag.button(class: tab_nav_tab_classes(dropdown: true, selected: selected), data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" }) do %>
-    <%= tag.span(tab_nav_icon_svg(icon), class: tab_nav_icon_classes) if icon.present? %>
-    <%= tag.span(text, class: tab_nav_text_classes(selected: selected)) %>
-    <%= tag.span(tab_nav_dropdown_caret_svg, class: tab_nav_dropdown_caret_classes) %>
+<%= tag.span data: { controller: "toggle", toggle_toggle_class: "hidden" }, class: "relative" do %>
+  <%= tag.button class: ["h-full", tab.classes], data: { action: "click->toggle#toggle click@window->toggle#hide pagehide@window->toggle#hide" } do %>
+    <%= tab.icon %>
+    <%= tab.text %>
+    <%= icons.chevron_down %>
   <% end %>
 
-  <%= tag.div(class: tab_nav_dropdown_menu_classes, data: { toggle_target: "toggleable" }) do %>
-    <%= yield %>
-  <% end %>
+  <%= tag.div items, class: ["hidden", "z-40 absolute mt-1 w-60 rounded border border-gray-300 shadow-lg py-1 bg-white divide-y divide-gray-200"], data: { toggle_target: "toggleable" } %>
 <% end %>
