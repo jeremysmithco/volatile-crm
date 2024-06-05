@@ -33,7 +33,7 @@ class TabNav::DropdownTabComponent < TabNav::BaseTabComponent
     "hidden"
   end
 
-  class DropdownItemComponent < ViewComponent::Base
+  class DropdownItemComponent < ApplicationComponent
     def initialize(text:, link:)
       @text = text
       @link = link

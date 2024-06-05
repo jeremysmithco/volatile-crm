@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :tabs, only: [:show]
+  resources :tabs, only: [:index, :show]
+  resources :charts, only: [:index]
 
   resources :contacts
   resources :companies
