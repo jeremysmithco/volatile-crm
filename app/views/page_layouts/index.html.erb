@@ -1,0 +1,76 @@
+<%= render PageLayouts::BasicComponent.new(title: "Companies") do |c| %>
+  <%= c.with_action do %>
+    <%= link_to "New", new_company_path, class: "block bg-cyan-500 hover:bg-cyan-700 px-3 py-1 text-white rounded cursor-pointer" %>
+  <% end %>
+
+  <%= c.with_body do %>
+    <table class="min-w-full">
+      <thead class="bg-gray-600">
+        <tr>
+          <th class="px-2 py-1.5 text-left text-sm text-white font-semibold">Name</th>
+          <th class="px-2 py-1.5 text-left text-sm text-white font-semibold">Size</th>
+          <th class="px-2 py-1.5 text-left text-sm text-white font-semibold">Website</th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-200">
+        <% @companies.each do |company| %>
+          <tr>
+            <td class="px-2 py-1.5"><%= link_to company.name, company_path(company), class: "text-cyan-500" %></td>
+            <td class="px-2 py-1.5 text-sm text-gray-500"><%= company.size %></td>
+            <td class="px-2 py-1.5 text-sm"><%= link_to company.website, "", class: "text-cyan-500" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+<%= render PageLayouts::BasicComponent.new(title: @company.name, parent_title: "Companies", parent_link: companies_path, ) do |c| %>
+  <%= c.with_action do %>
+    <%= button_to "Delete", company_path(@company), method: :delete, class: "block bg-rose-500 hover:bg-rose-700 px-3 py-1 text-white rounded cursor-pointer" %>
+  <% end %>
+
+  <%= c.with_body do %>
+    <%= form_for [@company], builder: TailwindBuilder do |f| %>
+      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
+        <div class="md:w-48 md:text-right">
+          <%= f.label :name, class: "block font-semibold pt-2" %>
+        </div>
+
+        <div class="flex-1">
+          <%= f.text_field :name, class: "max-w-md" %>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
+        <div class="md:w-48 md:text-right">
+          <%= f.label :size, class: "block font-semibold pt-2" %>
+        </div>
+
+        <div class="flex-1">
+          <%= f.number_field :size, class: "max-w-32" %>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
+        <div class="md:w-48 md:text-right">
+          <%= f.label :website, class: "block font-semibold pt-2" %>
+        </div>
+
+        <div class="flex-1">
+          <%= f.text_field :website, class: "max-w-xs" %>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
+        <div class="md:w-48 md:text-right">
+        </div>
+
+        <div class="flex-1">
+          <button type="submit" class="bg-cyan-500 hover:bg-cyan-700 px-3 py-2 text-white rounded" data-disable-with="Saving...">Save</button>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

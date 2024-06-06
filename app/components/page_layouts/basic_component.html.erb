@@ -1,0 +1,23 @@
+<div class="border border-gray-200 p-6 rounded-lg mb-10">
+  <div class="flex justify-between items-end pb-4 border-b border-gray-100 mb-6">
+    <div>
+      <h3 class="flex items-center text-xl leading-none font-semibold h-8">
+        <% if parent.present?  %>
+          <%= link_to parent.title, parent.link, class: "text-cyan-500" %>
+
+          <svg class="flex-shrink-0 h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+          </svg>
+        <% end %>
+
+        <span><%= title %></span>
+      </h3>
+    </div>
+
+    <div class="space-x-2">
+      <%= action %>
+    </div>
+  </div>
+
+  <%= body %>
+</div>

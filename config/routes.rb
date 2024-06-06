@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :tabs, only: [:index, :show]
   resources :charts, only: [:index]
   resources :alerts, only: [:index]
+  resources :page_layouts, only: [:index]
 
   resources :contacts
   resources :companies
