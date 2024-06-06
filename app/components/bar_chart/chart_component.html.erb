@@ -4,7 +4,7 @@
   <% end %>
 
   <%= tag.g(transform: "translate(#{window.step_offset}, #{window.y_offset})") do %>
-    <%= tag.rect(x: 0, y: 0, width: window.margin, height: window.height, fill: "#0000ff", "fill-opacity": 0.25) if debug %>
+    <%= tag.rect(x: 0, y: 0, width: window.margin, height: window.height, fill: "#ff0000", "fill-opacity": 0.35) if debug %>
 
     <%= render BarChart::ScaleComponent.with_collection(scales, window:, ceiling:) %>
   <% end %>

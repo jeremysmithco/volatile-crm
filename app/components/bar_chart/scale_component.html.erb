@@ -1,5 +1,5 @@
 <%= tag.g(transform: "translate(0, #{offset})") do %>
-  <%= tag.rect(x: label_spacing, y: 0, width: window.width + label_spacing, height: 1, fill: "#d1d5db") %>
+  <%= tag.rect(x: line.x, y: line.y, width: line.width, height: line.height, fill: line.color) %>
 
-  <%= tag.text(scale, x: 8, y: 1, fill: "#6b7280", "font-size": "12", "alignment-baseline": "middle", "text-anchor": "end") %>
+  <%= tag.text(scale, x: label.x, y: label.y, fill: label.color, "font-size": label.size, "alignment-baseline": "middle", "text-anchor": "end") %>
 <% end %>

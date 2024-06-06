@@ -1,6 +1,5 @@
 <%= tag.g(transform: "translate(#{x_offset})") do %>
   <%= tag.rect(x: bar.x, y: bar.y, width: bar.width, height: bar.height, fill: bar.color) %>
 
-  <%= tag.text(tick.label, x: bar.x + (bar.width / 2), y: window.height + 20, fill: bar.color, "text-anchor": "middle", "font-size": "12") %>
+  <%= tag.text(tick.label, x: label.x, y: label.y, fill: label.color, "font-size": label.size, "text-anchor": "middle") %>
 <% end %>
-
