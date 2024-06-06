@@ -7,18 +7,18 @@
     <table class="min-w-full">
       <thead class="bg-gray-600">
         <tr>
-          <th class="px-2 py-1.5 text-left text-sm text-white font-semibold">Name</th>
-          <th class="px-2 py-1.5 text-left text-sm text-white font-semibold">Size</th>
-          <th class="px-2 py-1.5 text-left text-sm text-white font-semibold">Website</th>
+          <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Name</th>
+          <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Size</th>
+          <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Website</th>
         </tr>
       </thead>
 
       <tbody class="divide-y divide-gray-200">
         <% @companies.each do |company| %>
           <tr>
-            <td class="px-2 py-1.5"><%= link_to company.name, company_path(company), class: "text-cyan-500" %></td>
-            <td class="px-2 py-1.5 text-sm text-gray-500"><%= company.size %></td>
-            <td class="px-2 py-1.5 text-sm"><%= link_to company.website, "", class: "text-cyan-500" %></td>
+            <td class="px-3 py-1.5"><%= link_to company.name, company_path(company), class: "text-cyan-500" %></td>
+            <td class="px-3 py-1.5 text-sm text-gray-500"><%= company.size %></td>
+            <td class="px-3 py-1.5 text-sm"><%= link_to company.website, "", class: "text-cyan-500" %></td>
           </tr>
         <% end %>
       </tbody>
@@ -33,44 +33,41 @@
 
   <%= c.with_body do %>
     <%= form_for [@company], builder: TailwindBuilder do |f| %>
-      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
-        <div class="md:w-48 md:text-right">
+      <%= render PageLayouts::FormRowComponent.new do |r| %>
+        <%= r.with_label do %>
           <%= f.label :name, class: "block font-semibold pt-2" %>
-        </div>
+        <% end %>
 
-        <div class="flex-1">
+        <%= r.with_input do %>
           <%= f.text_field :name, class: "max-w-md" %>
-        </div>
-      </div>
+        <% end %>
+      <% end %>
 
-      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
-        <div class="md:w-48 md:text-right">
+      <%= render PageLayouts::FormRowComponent.new do |r| %>
+        <%= r.with_label do %>
           <%= f.label :size, class: "block font-semibold pt-2" %>
-        </div>
+        <% end %>
 
-        <div class="flex-1">
+        <%= r.with_input do %>
           <%= f.number_field :size, class: "max-w-32" %>
-        </div>
-      </div>
+        <% end %>
+      <% end %>
 
-      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
-        <div class="md:w-48 md:text-right">
+      <%= render PageLayouts::FormRowComponent.new do |r| %>
+        <%= r.with_label do %>
           <%= f.label :website, class: "block font-semibold pt-2" %>
-        </div>
+        <% end %>
 
-        <div class="flex-1">
+        <%= r.with_input do %>
           <%= f.text_field :website, class: "max-w-xs" %>
-        </div>
-      </div>
+        <% end %>
+      <% end %>
 
-      <div class="flex flex-col md:flex-row md:space-x-8 mb-4">
-        <div class="md:w-48 md:text-right">
-        </div>
-
-        <div class="flex-1">
-          <button type="submit" class="bg-cyan-500 hover:bg-cyan-700 px-3 py-2 text-white rounded" data-disable-with="Saving...">Save</button>
-        </div>
-      </div>
+      <%= render PageLayouts::FormRowComponent.new do |r| %>
+        <%= r.with_input do %>
+          <%= tag.button("Save", type: "submit", class: "bg-cyan-500 hover:bg-cyan-700 px-3 py-2 text-white rounded", data: { disable_with: "Saving..." }) %>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

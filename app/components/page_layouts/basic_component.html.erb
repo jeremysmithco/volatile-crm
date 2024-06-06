@@ -1,23 +1,18 @@
-<div class="border border-gray-200 p-6 rounded-md mb-10">
-  <div class="flex justify-between items-end pb-4 border-b border-gray-100 mb-6">
-    <div>
-      <h3 class="flex items-center text-xl leading-none font-semibold h-8">
+<%= tag.div(class: "border border-gray-200 p-6 rounded-md mb-10") do %>
+  <%= tag.div(class: "flex justify-between items-end pb-4 border-b border-gray-100 mb-6") do %>
+    <%= tag.div do %>
+      <%= tag.h3(class: "flex items-center text-lg leading-none font-semibold h-8") do %>
         <% if parent.present?  %>
           <%= link_to parent.title, parent.link, class: "text-cyan-500" %>
-
-          <svg class="flex-shrink-0 h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-            <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-          </svg>
+          <%= tag.span(render("icons/divider"), class: "text-gray-300") %>
         <% end %>
 
-        <span><%= title %></span>
-      </h3>
-    </div>
+        <%= tag.span(title) %>
+      <% end %>
+    <% end %>
 
-    <div class="space-x-2">
-      <%= action %>
-    </div>
-  </div>
+    <%= tag.div(action, class: "space-x-2") %>
+  <% end %>
 
   <%= body %>
-</div>
+<% end %>
