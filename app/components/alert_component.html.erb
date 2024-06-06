@@ -1,0 +1,8 @@
+<%= tag.div(class: class_names(color(:background), "flex items-center space-x-4 p-4 mb-4 rounded-md")) do %>
+  <%= tag.div(render("icons/#{icon}"), class: class_names(color(:icon), "flex justify-center")) if icon.present? %>
+
+  <%= tag.div do %>
+    <%= tag.h3(title, class: class_names(color(:text), "font-semibold")) if title.present? %>
+    <%= tag.p(message, class: class_names(color(:text), "text-sm")) %>
+  <% end %>
+<% end %>

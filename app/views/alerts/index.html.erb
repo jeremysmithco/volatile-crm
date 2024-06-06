@@ -1,0 +1,15 @@
+<%= render AlertComponent.new(type: :notice).with_message_content("Contact address successfully updated.") %>
+
+<%= render AlertComponent.new(type: :info, icon: "cake").with_message_content("John’s birthday is tomorrow. Don’t forget to send him a message!") %>
+
+<%= render AlertComponent.new(type: :alert, title: "Danger Zone") do |c| %>
+  <%= c.with_message do %>
+    Please be careful in the section below, as these actions are <strong>not reversible</strong>!
+  <% end %>
+<% end %>
+
+<%= render AlertComponent.new(type: :warning, icon: "information-circle", title: "Contact Limit Reached") do |c| %>
+  <%= c.with_message do %>
+    You’ve reached the contact limit for your plan. Please <%= link_to "upgrade", root_path, class: "underline" %> to add more contacts.
+  <% end %>
+<% end %>
