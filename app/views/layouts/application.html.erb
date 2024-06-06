@@ -14,7 +14,7 @@
   <body>
     <div class="flex flex-col h-screen">
       <% if params[:controller] == "tabs" %>
-        <div class="flex bg-gray-700">
+        <div class="flex bg-gray-700 opacity-0 hover:opacity-100">
           <%= link_to "←", tab_path(id: @prev_id), class: "text-white text-sm px-2 py-1 hover:bg-gray-500" if @prev_id.present? %>
           <%= link_to "→", tab_path(id: @next_id), class: "text-white text-sm px-2 py-1 hover:bg-gray-500" if @next_id.present? %>
           <%= tag.span(@id.titleize, class: "text-white text-sm px-2 py-1") %>
