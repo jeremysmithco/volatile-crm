@@ -6,4 +6,8 @@ class Contact < ApplicationRecord
   def full_name
     [first_name, last_name].compact.join(" ")
   end
+
+  def social?
+    [linkedin, github, twitter].compact_blank.any?
+  end
 end

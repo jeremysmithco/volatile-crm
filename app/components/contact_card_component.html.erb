@@ -1,18 +1,48 @@
-<%= link_to contact_path(contact), class: "flex bg-white hover:bg-cyan-50 shadow-lg rounded-md p-4" do %>
-  <%= tag.div(class: "flex") do %>
-    <%= tag.div(render(AvatarComponent.new(contact: contact)), class: "w-28 h-24 mb-4") %>
-
-    <%= tag.div(class: "flex-1") do %>
-      <%= tag.div do %>
-        <%= tag.h3(contact.full_name, class: "text-lg font-semibold text-gray-600") %>
-        <%= tag.div(contact.company.name, class: "text-gray-500") %>
+<%= link_to contact_path(contact), class: "flex flex-col block bg-white shadow rounded-md p-4 divide-y divide-gray-200" do %>
+  <%= tag.div(class: "flex justify-between space-x-2") do %>
+    <%= tag.div do %>
+      <%= tag.div(class: "flex items-baseline space-x-2") do %>
+        <%= tag.span(contact.full_name, class: "text-xl font-semibold text-gray-600") %>
+        <%= tag.span(contact.company.name, class: "text-gray-400") %>
       <% end %>
 
       <% if contact.location.present? %>
-        <%= tag.div(class: "flex space-x-1 items-center mt-2") do %>
-          <%= tag.span(render("icons/map-pin"), class: "text-gray-500") %>
+        <%= tag.div(class: "flex space-x-2 items-center mt-2") do %>
+          <%= tag.span(render("icons/map-pin"), class: "text-gray-400") %>
           <%= tag.div(contact.location, class: "text-sm text-gray-500") %>
         <% end %>
+      <% end %>
+
+      <% if contact.email.present? %>
+        <%= tag.div(class: "flex space-x-2 items-center mt-2") do %>
+          <%= tag.span(render("icons/envelope"), class: "text-gray-400") %>
+          <%= tag.div(contact.email, class: "text-sm text-cyan-500") %>
+        <% end %>
+      <% end %>
+
+      <% if contact.phone.present? %>
+        <%= tag.div(class: "flex space-x-2 items-center mt-2") do %>
+          <%= tag.span(render("icons/phone"), class: "text-gray-400") %>
+          <%= tag.div(contact.phone, class: "text-sm text-gray-500") %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= tag.div(render(AvatarComponent.new(contact: contact))) %>
+  <% end %>
+
+  <% if contact.social? %>
+    <%= tag.div(class: "flex space-x-3 items-center mt-4 pt-4") do %>
+      <% if contact.linkedin.present? %>
+        <%= tag.span(render("icons/linkedin"), class: "text-gray-400") %>
+      <% end %>
+
+      <% if contact.github.present? %>
+        <%= tag.span(render("icons/github"), class: "text-gray-400") %>
+      <% end %>
+
+      <% if contact.twitter.present? %>
+        <%= tag.span(render("icons/twitter"), class: "text-gray-400") %>
       <% end %>
     <% end %>
   <% end %>
