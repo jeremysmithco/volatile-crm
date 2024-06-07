@@ -26,13 +26,13 @@ class TailwindBuilder < ActionView::Helpers::FormBuilder
   end
 
   def date_select(method, options = {}, html_options = {}, &block)
-    super(method, options, html_options.merge(class: "#{html_options[:class]} border-gray-300 shadow-inner disabled:bg-gray-100 rounded"), &block)
+    super(method, options, html_options.merge(class: "#{html_options[:class]} border-2 border-gray-300 bg-gray-50 shadow-inner disabled:bg-gray-200 rounded"), &block)
   end
 
   private
 
   def default_classes(options = {})
-    default_classes = "w-full border-gray-300 shadow-inner disabled:bg-gray-100"
+    default_classes = "w-full border-2 border-gray-300 bg-gray-50 shadow-inner disabled:bg-gray-200"
     default_classes += options[:toolbar] ? " rounded-b flex" : " rounded"
     default_classes
   end

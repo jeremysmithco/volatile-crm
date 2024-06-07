@@ -1,6 +1,6 @@
 <%= render PageLayouts::BasicComponent.new(title: "Companies") do |c| %>
   <%= c.with_action do %>
-    <%= link_to "New", new_company_path, class: "block bg-cyan-500 hover:bg-cyan-700 px-3 py-1 text-white rounded cursor-pointer" %>
+    <%= link_to "New", new_company_path, class: "block bg-cyan-500 hover:bg-cyan-700 px-3 py-1 text-white rounded-md cursor-pointer" %>
   <% end %>
 
   <%= c.with_body do %>
@@ -13,7 +13,7 @@
         </tr>
       </thead>
 
-      <tbody class="divide-y divide-gray-200">
+      <tbody class="divide-y-2 divide-gray-100">
         <% @companies.each do |company| %>
           <tr>
             <td class="px-3 py-1.5"><%= link_to company.name, company_path(company), class: "text-cyan-500" %></td>
@@ -28,14 +28,14 @@
 
 <%= render PageLayouts::BasicComponent.new(title: @company.name, parent_title: "Companies", parent_link: companies_path, ) do |c| %>
   <%= c.with_action do %>
-    <%= button_to "Delete", company_path(@company), method: :delete, class: "block bg-rose-500 hover:bg-rose-700 px-3 py-1 text-white rounded cursor-pointer" %>
+    <%= button_to "Delete", company_path(@company), method: :delete, class: "block bg-rose-500 hover:bg-rose-700 px-3 py-1 text-white rounded-md cursor-pointer" %>
   <% end %>
 
   <%= c.with_body do %>
     <%= form_for [@company], builder: TailwindBuilder do |f| %>
       <%= render PageLayouts::FormRowComponent.new do |r| %>
         <%= r.with_label do %>
-          <%= f.label :name, class: "block font-semibold pt-2" %>
+          <%= f.label :name, class: "block text-gray-500 font-semibold pt-2" %>
         <% end %>
 
         <%= r.with_input do %>
@@ -45,7 +45,7 @@
 
       <%= render PageLayouts::FormRowComponent.new do |r| %>
         <%= r.with_label do %>
-          <%= f.label :size, class: "block font-semibold pt-2" %>
+          <%= f.label :size, class: "block text-gray-500 font-semibold pt-2" %>
         <% end %>
 
         <%= r.with_input do %>
@@ -55,7 +55,7 @@
 
       <%= render PageLayouts::FormRowComponent.new do |r| %>
         <%= r.with_label do %>
-          <%= f.label :website, class: "block font-semibold pt-2" %>
+          <%= f.label :website, class: "block text-gray-500 font-semibold pt-2" %>
         <% end %>
 
         <%= r.with_input do %>

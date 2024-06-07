@@ -1,0 +1,21 @@
+<%= tag.nav(class: "flex space-x-2 border-b-2 border-gray-400") do %>
+  <%= link_to root_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded-md rounded-b-none leading-none py-3 px-3 bg-gray-300 hover:bg-gray-400" do %>
+    <%= tag.span(render("icons/home"), class: "text-gray-400 group-hover:text-gray-500") %>
+    <%= tag.span("Dashboard", class: "text-gray-600 group-hover:text-gray-700") %>
+  <% end %>
+
+  <%= link_to contacts_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded-md rounded-b-none leading-none py-3 px-3 bg-gray-300 hover:bg-gray-400" do %>
+    <%= tag.span(render("icons/users"), class: "text-gray-400 group-hover:text-gray-500") %>
+    <%= tag.span("Contacts", class: "text-gray-600 group-hover:text-gray-700") %>
+  <% end %>
+
+  <%= link_to companies_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded-md rounded-b-none leading-none py-3 px-3 bg-gray-300 hover:bg-gray-400" do %>
+    <%= tag.span(render("icons/building-office"), class: "text-gray-400 group-hover:text-gray-500") %>
+    <%= tag.span("Companies", class: "text-gray-600 group-hover:text-gray-700") %>
+  <% end %>
+
+  <%= link_to tasks_path, class: "group whitespace-nowrap flex items-center space-x-1 rounded-md rounded-b-none leading-none py-3 px-3 bg-gray-300 hover:bg-gray-400" do %>
+    <%= tag.span(render("icons/pencil-square"), class: "text-gray-400 group-hover:text-gray-500") %>
+    <%= tag.span("Tasks", class: "text-gray-600 group-hover:text-gray-700") %>
+  <% end %>
+<% end %>

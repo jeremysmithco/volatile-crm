@@ -4,7 +4,7 @@ class TabNav::BaseTabComponent < ApplicationComponent
   attr_reader :text, :icon, :selected
 
   def text_classes
-    class_names("text-gray-500 group-hover:text-gray-600", "font-semibold": selected)
+    class_names("text-gray-600 group-hover:text-gray-700", "font-semibold": selected)
   end
 
   def icon_svg
@@ -12,7 +12,7 @@ class TabNav::BaseTabComponent < ApplicationComponent
   end
 
   def icon_classes
-    "text-gray-400"
+    "text-gray-400 group-hover:text-gray-500"
   end
 
   def tab_classes(*args)
@@ -20,14 +20,18 @@ class TabNav::BaseTabComponent < ApplicationComponent
   end
 
   def tab_base
-    "group whitespace-nowrap flex items-center space-x-1 rounded rounded-b-none leading-none py-3 px-3 border"
+    "group whitespace-nowrap flex items-center space-x-1 rounded-md rounded-b-none leading-none py-3 px-3 border-b-2"
   end
 
   def tab_enabled
-    "border-gray-300 border-b-gray-400 hover:bg-gray-50"
+    "bg-gray-300 hover:bg-gray-400"
   end
 
   def tab_selected
-    "border-b-2 border-b-red-400"
+    "border-b-red-400"
+  end
+
+  def tab_unselected
+    "border-b-gray-400"
   end
 end

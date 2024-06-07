@@ -9,10 +9,10 @@ class TabNav::BarComponent < ApplicationComponent
   private
 
   def nav_classes
-    "flex justify-between space-x-2 items-start border-b border-gray-400 mb-8"
+    "flex justify-between space-x-2 items-start border-b-2 border-gray-400"
   end
 
   def section_classes
-    "flex -mb-px space-x-2"
+    "flex -mb-0.5 space-x-2"
   end
 end

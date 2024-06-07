@@ -1,3 +1,5 @@
-<div class="text-gray-400 font-semibold mb-4">Message Volume for May 2024</div>
+<%= tag.div(class: "bg-white p-6 rounded-md mb-10") do %>
+  <%= tag.div("Message Volume for May 2024", class: "text-gray-400 font-semibold mb-4") %>
 
-<%= render BarChart::ChartComponent.new(ticks: @ticks, width: 800, height: 400, background_color: "#e5e7eb") %>
+  <%= render BarChart::ChartComponent.new(ticks: @ticks, width: 800, height: 400, background_color: "#e5e7eb") %>
+<% end %>

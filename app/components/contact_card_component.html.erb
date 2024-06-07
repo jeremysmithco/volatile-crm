@@ -1,4 +1,4 @@
-<%= link_to contact_path(contact), class: "flex bg-gray-50 border border-gray-200 hover:bg-cyan-50 hover:border-cyan-200 rounded-lg p-4" do %>
+<%= link_to contact_path(contact), class: "flex bg-white hover:bg-cyan-50 shadow-lg rounded-md p-4" do %>
   <%= tag.div(class: "flex") do %>
     <%= tag.div(render(AvatarComponent.new(contact: contact)), class: "w-28 h-24 mb-4") %>
 

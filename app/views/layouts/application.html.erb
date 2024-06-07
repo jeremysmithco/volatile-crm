@@ -11,20 +11,20 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="bg-gray-600">
     <div class="flex flex-col h-screen">
       <div class="bg-gray-700 h-6">
-        <% if params[:controller] == "tabs" %>
-          <div class="flex items-stretch h-6 opacity-0 hover:opacity-100">
+        <div class="flex items-stretch h-6 opacity-0 hover:opacity-100">
+          <% if params[:controller] == "tabs" %>
             <%= link_to "←", tab_path(id: @prev_id), class: "flex items-center text-white text-sm px-2 hover:bg-gray-500" if @prev_id.present? %>
             <%= link_to "→", tab_path(id: @next_id), class: "flex items-center text-white text-sm px-2 hover:bg-gray-500" if @next_id.present? %>
             <%= tag.span(@id.titleize, class: "flex items-center text-white text-sm px-2") %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
 
       <div class="w-full max-w-6xl mx-auto px-4 pt-6">
-        <div class="text-lg text-gray-600 font-semibold mb-4">
+        <div class="text-lg text-white font-semibold mb-4">
           <%= link_to "Volatile CRM", root_path %>
         </div>
 

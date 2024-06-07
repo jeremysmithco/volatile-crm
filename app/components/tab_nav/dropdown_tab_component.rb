@@ -18,15 +18,15 @@ class TabNav::DropdownTabComponent < TabNav::BaseTabComponent
   end
 
   def caret_classes
-    "text-gray-400"
+    "text-gray-600 group-hover:text-gray-700"
   end
 
   def tab_classes
-    super("h-full", tab_enabled, "#{tab_selected}": selected)
+    super("h-full", tab_enabled, "#{tab_selected}": selected, "#{tab_unselected}": !selected)
   end
 
   def menu_classes
-    class_names(hidden_class, "z-40 absolute mt-1 w-60 rounded border border-gray-300 shadow-lg py-1 bg-white divide-y divide-gray-200")
+    class_names(hidden_class, "z-40 absolute mt-1 w-60 rounded-md border-2 border-gray-300 shadow-lg py-1 bg-gray-200 divide-y divide-gray-200")
   end
 
   def hidden_class
@@ -40,7 +40,7 @@ class TabNav::DropdownTabComponent < TabNav::BaseTabComponent
     end
 
     def call
-      link_to text, link, class: "block w-full text-left py-1.5 px-3 text-gray-500 hover:text-gray-600 hover:bg-gray-50"
+      link_to text, link, class: "block w-full text-left py-1.5 px-3 text-gray-500 hover:text-gray-600 hover:bg-gray-300"
     end
 
     private

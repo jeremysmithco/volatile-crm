@@ -9,7 +9,6 @@ class TabsController < ApplicationController
     @id = params[:id]
     @prev_id = prev_id
     @next_id = next_id
-    render @id
   end
 
   private

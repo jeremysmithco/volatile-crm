@@ -20,7 +20,7 @@
 <% }, extra: capture { %>
   <% if current_account.enabled_feature?(:search) %>
     <%= form_tag searches_path, method: :get do %>
-      <%= text_field_tag :query, "", placeholder: "Search", autocomplete: "off", class: "w-full text-sm border-gray-300 rounded-lg shadow-inner placeholder:text-gray-400" %>
+      <%= text_field_tag :query, "", placeholder: "Search", autocomplete: "off", class: "w-full text-sm border-2 border-gray-300 bg-gray-50 rounded-md shadow-inner placeholder:text-gray-400" %>
     <% end %>
   <% end %>
 <% } %>

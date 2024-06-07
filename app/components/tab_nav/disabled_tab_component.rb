@@ -18,10 +18,10 @@ class TabNav::DisabledTabComponent < TabNav::BaseTabComponent
   end
 
   def tab_classes
-    super("#{tab_disabled}": true)
+    super("#{tab_disabled}": true, "#{tab_unselected}": true)
   end
 
   def tab_disabled
-    "border-gray-200 border-b-gray-400 cursor-not-allowed"
+    "bg-gray-100 cursor-not-allowed"
   end
 end
