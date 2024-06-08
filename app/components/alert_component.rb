@@ -9,16 +9,30 @@ class AlertComponent < ApplicationComponent
   renders_one :message
 
   def initialize(type:, title: nil, icon: nil)
-    @type = type
-    @title = title
-    @icon = icon
-  end
-
-  def color(element)
-    CLASSES.dig(type, element)
+    @type, @title, @icon = type, title, icon
   end
 
   private
 
   attr_reader :type, :title, :icon
+
+  def color(element)
+    CLASSES.dig(type, element)
+  end
+
+  def wrapper_classes
+    class_names(color(:background), "flex items-center space-x-4 p-4 mb-4 rounded-md")
+  end
+
+  def icon_classes
+    class_names(color(:icon), "flex justify-center")
+  end
+
+  def title_classes
+    class_names(color(:text), "font-semibold")
+  end
+
+  def message_classes
+    class_names(color(:text), "text-sm")
+  end
 end

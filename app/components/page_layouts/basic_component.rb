@@ -4,7 +4,6 @@ class PageLayouts::BasicComponent < ApplicationComponent
 
   def initialize(title:, parent_title: nil, parent_link: nil)
     @title = title
-
     @parent = Parent.new(parent_title, parent_link) if parent_title.present?
   end
 
