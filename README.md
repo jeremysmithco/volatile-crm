@@ -1,24 +1,30 @@
-# README
+# Volatile CRM
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A companion Rails app to [Refactoring Volatile Views into Cohesive Components](https://speakerdeck.com/jeremysmithco/refactoring-volatile-views-into-cohesive-components) talk.
 
-Things you may want to cover:
+### Built With
 
-* Ruby version
+* [ViewComponent](https://viewcomponent.org/)
+* [Tailwind](https://tailwindcss.com/)
+* [Stimulus](https://stimulus.hotwired.dev/)
+* [Lookbook](https://lookbook.build/)
 
-* System dependencies
+### Component Examples
 
-* Configuration
+Examples of three different types of view components:
 
-* Database creation
+1. Utility: `AlertComponent` http://localhost:3000/alerts
+2. Layout: `PageLayouts::BasicComponent` http://localhost:3000/page_layouts
+3. Model-Specific: `ContactCardComponent` http://localhost:3000/contacts
 
-* Database initialization
+### Tabbed Navigation
 
-* How to run the test suite
+See the progression of a tabbed navigation bar:
 
-* Services (job queues, cache servers, search engines, etc.)
+* From: http://localhost:3000/tabs/1
+* To: http://localhost:3000/tabs/7
 
-* Deployment instructions
+Then compare the final implementation with ViewComponent and traditional Rails view partials and helpers.
 
-* ...
+* ViewComponent: http://localhost:3000/tabs/c
+* Partials & helpers: http://localhost:3000/tabs/p
