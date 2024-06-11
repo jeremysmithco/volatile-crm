@@ -16,5 +16,7 @@ gem "turbo-rails"
 gem "view_component"
 
 group :development, :test do
+  gem "capybara"
   gem "debug", platforms: %i[ mri windows ]
 end
+
