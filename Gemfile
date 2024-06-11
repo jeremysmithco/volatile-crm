@@ -20,3 +20,6 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
 
+group :development do
+  gem "lookbook", ">= 2.3.1"
+end

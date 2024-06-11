@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount Lookbook::Engine, at: "/lookbook"
+  end
+
   resources :tabs, only: [:index, :show]
   resources :charts, only: [:index]
   resources :alerts, only: [:index]

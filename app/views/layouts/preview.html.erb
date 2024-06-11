@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Volatile CRM</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-prefetch" content="false">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body class="bg-gray-600">
+    <div class="flex flex-col min-h-[920px]">
+      <div class="w-full max-w-6xl mx-auto px-4 pt-6">
+        <%= tag.div(class: "bg-white p-6 min-h-96 rounded-md") do %>
+          <%= yield %>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
