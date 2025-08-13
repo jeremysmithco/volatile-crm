@@ -15,15 +15,75 @@ end
 content = File.read(file_path)
 
 # Remove class: attributes with their values
-# This regex matches:
-# - class: followed by optional whitespace
-# - Either quoted string (single or double quotes) or unquoted content
-# - Handles nested quotes and complex class values
-modified_content = content.gsub(/\bclass:\s*(?:"[^"]*"|'[^']*'|[^,\s)]+)(?:\s*,\s*)?/, 'class: ""')
+# Use a character-by-character approach to handle interpolated strings
+def remove_class_attributes(content)
+  result = ""
+  i = 0
 
-# Clean up any trailing commas or extra spaces that might remain
-modified_content = modified_content.gsub(/,\s*\)/, ')')
-modified_content = modified_content.gsub(/\(\s*,/, '(')
+  while i < content.length
+    # Look for "class:"
+    if content[i, 6] == "class:"
+      # Add "class: """ to result
+      result += 'class: ""'
+
+      # Skip past "class:" and any whitespace
+      i += 6
+      while i < content.length && content[i] =~ /\s/
+        i += 1
+      end
+
+      # Determine quote type
+      if i < content.length && content[i] == '"'
+        quote_char = '"'
+        i += 1  # Skip opening quote
+      elsif i < content.length && content[i] == "'"
+        quote_char = "'"
+        i += 1  # Skip opening quote
+      else
+        # Handle unquoted values - skip until comma, space, or closing paren
+        while i < content.length && content[i] !~ /[,\s)]/
+          i += 1
+        end
+        next
+      end
+
+      # Skip quoted content, handling nested braces and escaped chars
+      brace_count = 0
+      while i < content.length
+        char = content[i]
+
+        if char == '\\'
+          i += 2  # Skip escaped character
+        elsif char == '{'
+          brace_count += 1
+          i += 1
+        elsif char == '}'
+          brace_count -= 1
+          i += 1
+        elsif char == quote_char && brace_count == 0
+          i += 1  # Skip closing quote
+          break
+        else
+          i += 1
+        end
+      end
+    else
+      result += content[i]
+      i += 1
+    end
+  end
+
+  result
+end
+
+modified_content = remove_class_attributes(content)
+
+# Clean up empty classes
+modified_content = modified_content.gsub(', class: ""', '')
+modified_content = modified_content.gsub('(class: "", ', '(')
+modified_content = modified_content.gsub(' class: "", ', ' ')
+modified_content = modified_content.gsub(' class: ""', ' ')
+modified_content = modified_content.gsub('(class: "")', '')
 
 File.write(file_path, modified_content)
 
