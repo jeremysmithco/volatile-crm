@@ -1,4 +1,4 @@
-<%= render PageLayouts::BasicComponent.new(title: "Companies") do |c| %>
+<%= render PageLayouts::BasicComponent.new(title: "Companies", debug: @debug) do |c| %>
   <%= c.with_action do %>
     <%= link_to "New", new_company_path, class: "block bg-cyan-500 hover:bg-cyan-700 px-3 py-1 text-white rounded-md cursor-pointer" %>
   <% end %>
@@ -8,7 +8,7 @@
   <% end %>
 <% end %>
 
-<%= render PageLayouts::BasicComponent.new(title: @company.name) do |c| %>
+<%= render PageLayouts::BasicComponent.new(title: @company.name, debug: @debug) do |c| %>
   <%= c.with_parent(title: "Companies", link: companies_path) %>
 
   <%= c.with_action do %>
