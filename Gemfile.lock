@@ -161,7 +161,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    nio4r (2.7.3)
+    nio4r (2.7.4)
     nokogiri (1.18.9)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -182,7 +182,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (6.4.2)
+    puma (6.6.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.0)
@@ -281,7 +281,7 @@ DEPENDENCIES
   image_processing
   jsbundling-rails
   lookbook
-  puma (>= 5.0)
+  puma
   rails (~> 7.1.3, >= 7.1.3.2)
   sprockets-rails
   sqlite3 (~> 1.4)
