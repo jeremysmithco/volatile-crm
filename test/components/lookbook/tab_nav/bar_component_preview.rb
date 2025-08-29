@@ -1,4 +1,4 @@
-class TabNav::BarComponentPreview < ViewComponent::Preview
+class TabNav::BarComponentPreview < Lookbook::Preview
   def standard
     render TabNav::BarComponent.new do |c|
       c.with_tab_link(text: "Simple", link: "/simple", selected: true)
