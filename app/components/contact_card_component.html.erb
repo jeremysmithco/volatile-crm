@@ -1,7 +1,7 @@
-<%= link_to contact_path(contact), class: "flex flex-col block bg-white shadow rounded-md p-4 divide-y divide-gray-200" do %>
-  <%= tag.div(class: "flex justify-between space-x-2") do %>
+<%= link_to contact_path(contact), class: "flex flex-col block bg-white shadow rounded-md p-4" do %>
+  <%= tag.div(class: "flex justify-between gap-2") do %>
     <%= tag.div do %>
-      <%= tag.div(class: "flex items-baseline space-x-2") do %>
+      <%= tag.div(class: "flex flex-wrap items-baseline space-x-2") do %>
         <%= tag.span(contact.full_name, class: "text-xl font-semibold text-gray-600") %>
         <%= tag.span(contact.company.name, class: "text-gray-400") %>
       <% end %>
@@ -16,7 +16,7 @@
       <% if contact.email.present? %>
         <%= tag.div(class: "flex space-x-2 items-center mt-2") do %>
           <%= tag.span(render("icons/envelope"), class: "text-gray-400") %>
-          <%= tag.div(contact.email, class: "text-sm text-cyan-500") %>
+          <%= tag.div(contact.email, class: "text-sm break-all text-cyan-500") %>
         <% end %>
       <% end %>
 
@@ -28,11 +28,11 @@
       <% end %>
     <% end %>
 
-    <%= tag.div(render(AvatarComponent.new(contact: contact))) %>
+    <%= render(AvatarComponent.new(contact: contact)) %>
   <% end %>
 
   <% if contact.social? %>
-    <%= tag.div(class: "flex space-x-3 items-center mt-4 pt-4") do %>
+    <%= tag.div(class: "flex gap-3 items-center pt-3 border-t-2 border-gray-100 mt-4") do %>
       <% if contact.linkedin.present? %>
         <%= tag.span(render("icons/linkedin"), class: "text-gray-400") %>
       <% end %>
