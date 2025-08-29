@@ -9,7 +9,6 @@ class TabNav::BarComponentPreview < ViewComponent::Preview
         d.with_item(text: "Item 2", link: "/item-")
       end
 
-
       c.with_extra { "<strong>Something else.</strong>".html_safe }
     end
   end
