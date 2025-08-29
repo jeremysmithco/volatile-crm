@@ -32,7 +32,7 @@ class TailwindBuilder < ActionView::Helpers::FormBuilder
   private
 
   def default_classes(options = {})
-    default_classes = "w-full border-2 border-gray-300 bg-gray-50 shadow-inner disabled:bg-gray-200"
+    default_classes = "w-full border-2 border-gray-300 bg-gray-50 shadow-inner disabled:bg-gray-200 focus:ring-2 focus:ring-blue-600"
     default_classes += options[:toolbar] ? " rounded-b flex" : " rounded"
     default_classes
   end
