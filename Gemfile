@@ -21,5 +21,5 @@ group :development, :test do
 end
 
 group :development do
-  gem "lookbook", ">= 2.3.1"
+  gem "lookbook"
 end
