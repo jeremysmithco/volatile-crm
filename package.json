@@ -5,13 +5,8 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.4",
     "@tailwindcss/cli": "^4.1.12",
-    "autoprefixer": "^10.4.19",
     "esbuild": "^0.21.3",
     "esbuild-rails": "^1.0.7",
-    "postcss": "^8.4.38",
-    "postcss-cli": "^11.0.0",
-    "postcss-import": "^16.1.0",
-    "postcss-nesting": "^12.1.4",
     "tippy.js": "^6.3.7"
   },
   "scripts": {
