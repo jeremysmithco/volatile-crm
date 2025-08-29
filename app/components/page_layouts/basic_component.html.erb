@@ -1,18 +1,16 @@
-<%= tag.div(class: "bg-white p-6 rounded-md mb-10") do %>
-  <%= tag.div(class: "flex justify-between items-end pb-4 border-b-2 border-b-gray-200 mb-6") do %>
-    <%= tag.div do %>
-      <%= tag.h3(class: "flex items-center text-lg leading-none font-semibold h-8") do %>
-        <% if parent.present?  %>
-          <%= link_to parent.title, parent.link, class: "text-cyan-500" %>
-          <%= tag.span(render("icons/divider"), class: "text-gray-300") %>
-        <% end %>
-
-        <%= tag.span(title) %>
+<%= tag.div(class: wrapper_classes) do %>
+  <%= tag.div(class: header_classes) do %>
+    <%= tag.div(class: title_classes) do %>
+      <% if parent? %>
+        <%= parent %>
+        <%= tag.div(render("icons/divider"), class: divider_classes) %>
       <% end %>
+
+      <%= tag.div(title) %>
     <% end %>
 
-    <%= tag.div(action, class: "space-x-2") %>
+    <%= tag.div(action, class: action_classes) %>
   <% end %>
 
-  <%= body %>
+  <%= tag.div(body, class: body_classes) %>
 <% end %>
