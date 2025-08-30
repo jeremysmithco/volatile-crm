@@ -6,7 +6,13 @@
       <%= tag.div(title) %>
     <% end %>
 
-    <%= tag.div(action, class: action_classes) %>
+    <% if actions? %>
+      <%= tag.div(class: action_classes) do %>
+        <% actions.each do |action| %>
+          <%= action %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 
   <%= tag.div(body, class: body_classes) %>

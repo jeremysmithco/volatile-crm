@@ -1,7 +1,6 @@
 <%= render PageLayouts::BasicComponent.new(title: "Companies", debug: @debug) do |c| %>
-  <%= c.with_action do %>
-    <%= link_to "New", new_company_path, class: "block bg-cyan-500 hover:bg-cyan-700 px-3 py-1 text-white rounded-md cursor-pointer" %>
-  <% end %>
+  <%= c.with_action_link(text: "New", path: new_company_path) %>
+  <%= c.with_action_link(text: "Settings", path: new_company_path, colors: "bg-gray-500 hover:bg-gray-700") %>
 
   <%= c.with_body do %>
     <%= render "table", companies: @companies %>
@@ -11,9 +10,8 @@
 <%= render PageLayouts::BasicComponent.new(title: @company.name, debug: @debug) do |c| %>
   <%= c.with_parent(title: "Companies", link: companies_path) %>
 
-  <%= c.with_action do %>
-    <%= button_to "Delete", company_path(@company), method: :delete, class: "block bg-rose-500 hover:bg-rose-700 px-3 py-1 text-white rounded-md cursor-pointer" %>
-  <% end %>
+  <%= c.with_action_button(text: "Duplicate", path: new_company_path) %>
+  <%= c.with_action_button(text: "Delete", path: company_path(@company), method: :delete, colors: "bg-rose-500 hover:bg-rose-700") %>
 
   <%= c.with_body do %>
     <%= render "form", company: @company %>

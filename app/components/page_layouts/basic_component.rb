@@ -6,7 +6,10 @@ class PageLayouts::BasicComponent < ApplicationComponent
     ])
   end
 
-  renders_one :action
+  renders_many :actions, types: {
+    link: "LinkActionComponent", button: "ButtonActionComponent"
+  }
+
   renders_one :body
 
   def initialize(title:, debug: false)
@@ -39,5 +42,33 @@ class PageLayouts::BasicComponent < ApplicationComponent
 
   def body_classes
     class_names("p-2", "bg-rose-100 border border-rose-400 rounded": debug)
+  end
+
+  class LinkActionComponent < ApplicationComponent
+    def initialize(text:, path:, colors: "bg-cyan-500 hover:bg-cyan-700")
+      @text, @path, @colors = text, path, colors
+    end
+
+    def call
+      link_to(text, path, class: "block px-3 py-1 text-white rounded-md cursor-pointer #{colors}")
+    end
+
+    private
+
+    attr_reader :text, :path, :colors
+  end
+
+  class ButtonActionComponent < ApplicationComponent
+    def initialize(text:, path:, method: :post, colors: "bg-cyan-500 hover:bg-cyan-700")
+      @text, @path, @method, @colors = text, path, method, colors
+    end
+
+    def call
+      button_to(text, path, method: method, class: "block px-3 py-1 text-white rounded-md cursor-pointer #{colors}")
+    end
+
+    private
+
+    attr_reader :text, :path, :method, :colors
   end
 end
