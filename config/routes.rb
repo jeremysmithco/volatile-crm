@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :alerts, only: [:index]
   resources :page_layouts, only: [:index]
 
-  resources :contacts
+  resources :contacts, only: [:index, :show]
   resources :companies
   resources :tasks
   resources :messages
