@@ -1,6 +1,9 @@
 class PageLayouts::BasicComponent < ApplicationComponent
   renders_one :parent, ->(title:, link:) do
-    link_to(title, link, class: "text-cyan-500")
+    safe_join([
+      link_to(title, link, class: "text-cyan-500"),
+      tag.div(render("icons/divider"), class: divider_classes)
+    ])
   end
 
   renders_one :action

@@ -1,10 +1,7 @@
 <%= tag.div(class: wrapper_classes) do %>
   <%= tag.div(class: header_classes) do %>
     <%= tag.div(class: title_classes) do %>
-      <% if parent? %>
-        <%= parent %>
-        <%= tag.div(render("icons/divider"), class: divider_classes) %>
-      <% end %>
+      <%= parent %>
 
       <%= tag.div(title) %>
     <% end %>

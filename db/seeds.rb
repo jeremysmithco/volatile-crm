@@ -22,7 +22,7 @@ end
     github: ["", username].sample,
   )
 
-  if rand(1..10) > 2
+  if rand < 0.6
     num = rand(0..16)
     avatar_path = Rails.root.join("db/seeds/images/avatars/#{num}.jpg")
     contact.avatar.attach(io: File.new(avatar_path), filename: "#{num}.jpg")
