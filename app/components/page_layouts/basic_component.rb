@@ -12,13 +12,13 @@ class PageLayouts::BasicComponent < ApplicationComponent
 
   renders_one :body
 
-  def initialize(title:, debug: false)
-    @title, @debug = title, debug
+  def initialize(title:)
+    @title = title
   end
 
   private
 
-  attr_reader :title, :debug
+  attr_reader :title
 
   def wrapper_classes
     "bg-white p-4 rounded-md mb-10"
@@ -29,7 +29,7 @@ class PageLayouts::BasicComponent < ApplicationComponent
   end
 
   def title_classes
-    class_names("flex items-center grow p-2 text-lg leading-none font-semibold", "bg-rose-100 border border-rose-400 rounded": debug)
+    class_names("flex items-center grow p-2 text-lg leading-none font-semibold", "bg-rose-200 border border-rose-400 rounded opacity-75": debug)
   end
 
   def divider_classes
@@ -37,11 +37,11 @@ class PageLayouts::BasicComponent < ApplicationComponent
   end
 
   def action_classes
-    class_names("flex grow justify-end p-2 gap-2", "bg-rose-100 border border-rose-400 rounded": debug)
+    class_names("flex grow justify-end p-2 gap-2", "bg-rose-200 border border-rose-400 rounded opacity-75": debug)
   end
 
   def body_classes
-    class_names("p-2", "bg-rose-100 border border-rose-400 rounded": debug)
+    class_names("p-2", "bg-rose-200 border border-rose-400 rounded opacity-75": debug)
   end
 
   class LinkActionComponent < ApplicationComponent

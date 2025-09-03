@@ -1,4 +1,4 @@
-<%= render PageLayouts::BasicComponent.new(title: "Companies", debug: @debug) do |c| %>
+<%= render PageLayouts::BasicComponent.new(title: "Companies") do |c| %>
   <%= c.with_action_link(text: "New", path: new_company_path) %>
   <%= c.with_action_link(text: "Settings", path: new_company_path, colors: "bg-gray-500 hover:bg-gray-700") %>
 
@@ -7,7 +7,7 @@
   <% end %>
 <% end %>
 
-<%= render PageLayouts::BasicComponent.new(title: @company.name, debug: @debug) do |c| %>
+<%= render PageLayouts::BasicComponent.new(title: @company.name) do |c| %>
   <%= c.with_parent(title: "Companies", link: companies_path) %>
 
   <%= c.with_action_button(text: "Duplicate", path: new_company_path) %>

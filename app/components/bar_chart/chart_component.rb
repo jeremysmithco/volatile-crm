@@ -2,12 +2,11 @@ class BarChart::ChartComponent < ApplicationComponent
   DEFAULT_CEILING = 50
   DEFAULT_SCALE = 10
 
-  def initialize(ticks:, width: 640, height: 480, background_color: "#ffffff", debug: false)
+  def initialize(ticks:, width: 640, height: 480, background_color: "#ffffff")
     @ticks = ticks
     @width = width.to_i
     @height = height.to_i
     @background_color = background_color.to_s
-    @debug = debug
 
     @window = Window.new(chart: self)
     @ceiling = ticks.max_by(&:count)&.count || DEFAULT_CEILING
@@ -18,7 +17,7 @@ class BarChart::ChartComponent < ApplicationComponent
 
   private
 
-  attr_reader :ticks, :background_color, :debug, :window, :ceiling, :scales
+  attr_reader :ticks, :background_color, :window, :ceiling, :scales
 
   class Window
     SIDE_PROPORTIONS = { top: 1, right: 1, bottom: 2, left: 2.5 }

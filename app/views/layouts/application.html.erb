@@ -29,12 +29,8 @@
               <%= tag.span(@id.titleize, class: "flex items-center text-red-400 text-sm px-2") %>
             <% end %>
 
-            <% if params[:controller] == "alerts" %>
-              <%= link_to render("icons/eye"), alerts_path(debug: !@debug), class: "flex items-center text-gray-400 text-sm px-2 hover:bg-gray-500 hover:text-white" %>
-            <% end %>
-
-            <% if params[:controller] == "page_layouts" %>
-              <%= link_to render("icons/eye"), page_layouts_path(debug: !@debug), class: "flex items-center text-gray-400 text-sm px-2 hover:bg-gray-500 hover:text-white" %>
+            <% if params[:controller].in? %w[alerts page_layouts charts] %>
+              <%= link_to render("icons/eye"), polymorphic_path(params[:controller], debug: !@debug), class: "flex items-center text-gray-400 text-sm px-2 hover:bg-gray-500 hover:text-white" %>
             <% end %>
           </div>
 
