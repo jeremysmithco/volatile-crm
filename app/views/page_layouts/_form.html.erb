@@ -1,0 +1,37 @@
+<%= form_for [company], builder: TailwindBuilder do |f| %>
+  <%= render PageLayouts::FormRowComponent.new do |r| %>
+    <%= r.with_label do %>
+      <%= f.label :name, class: "block text-gray-500 font-semibold pt-2" %>
+    <% end %>
+
+    <%= r.with_input do %>
+      <%= f.text_field :name, class: "max-w-md" %>
+    <% end %>
+  <% end %>
+
+  <%= render PageLayouts::FormRowComponent.new do |r| %>
+    <%= r.with_label do %>
+      <%= f.label :size, class: "block text-gray-500 font-semibold pt-2" %>
+    <% end %>
+
+    <%= r.with_input do %>
+      <%= f.number_field :size, class: "max-w-32" %>
+    <% end %>
+  <% end %>
+
+  <%= render PageLayouts::FormRowComponent.new do |r| %>
+    <%= r.with_label do %>
+      <%= f.label :website, class: "block text-gray-500 font-semibold pt-2" %>
+    <% end %>
+
+    <%= r.with_input do %>
+      <%= f.text_field :website, class: "max-w-xs" %>
+    <% end %>
+  <% end %>
+
+  <%= render PageLayouts::FormRowComponent.new do |r| %>
+    <%= r.with_input do %>
+      <%= tag.button("Save", type: "submit", class: "bg-cyan-500 hover:bg-cyan-700 px-3 py-2 text-white rounded", data: { disable_with: "Saving..." }) %>
+    <% end %>
+  <% end %>
+<% end %>

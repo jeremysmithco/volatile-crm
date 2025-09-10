@@ -1,73 +1,19 @@
 <%= render PageLayouts::BasicComponent.new(title: "Companies") do |c| %>
-  <%= c.with_action do %>
-    <%= link_to "New", new_company_path, class: "block bg-cyan-500 hover:bg-cyan-700 px-3 py-1 text-white rounded-md cursor-pointer" %>
-  <% end %>
+  <%= c.with_action_link(text: "New", path: new_company_path) %>
+  <%= c.with_action_link(text: "Settings", path: new_company_path, colors: "bg-gray-500 hover:bg-gray-700") %>
 
   <%= c.with_body do %>
-    <table class="min-w-full">
-      <thead class="bg-gray-600">
-        <tr>
-          <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Name</th>
-          <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Size</th>
-          <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Website</th>
-        </tr>
-      </thead>
-
-      <tbody class="divide-y-2 divide-gray-100">
-        <% @companies.each do |company| %>
-          <tr>
-            <td class="px-3 py-1.5"><%= link_to company.name, company_path(company), class: "text-cyan-500" %></td>
-            <td class="px-3 py-1.5 text-sm text-gray-500"><%= company.size %></td>
-            <td class="px-3 py-1.5 text-sm"><%= link_to company.website, "", class: "text-cyan-500" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render "table", companies: @companies %>
   <% end %>
 <% end %>
 
-<%= render PageLayouts::BasicComponent.new(title: @company.name, parent_title: "Companies", parent_link: companies_path, ) do |c| %>
-  <%= c.with_action do %>
-    <%= button_to "Delete", company_path(@company), method: :delete, class: "block bg-rose-500 hover:bg-rose-700 px-3 py-1 text-white rounded-md cursor-pointer" %>
-  <% end %>
+<%= render PageLayouts::BasicComponent.new(title: @company.name) do |c| %>
+  <%= c.with_parent(title: "Companies", link: companies_path) %>
+
+  <%= c.with_action_button(text: "Duplicate", path: new_company_path) %>
+  <%= c.with_action_button(text: "Delete", path: company_path(@company), method: :delete, colors: "bg-rose-500 hover:bg-rose-700") %>
 
   <%= c.with_body do %>
-    <%= form_for [@company], builder: TailwindBuilder do |f| %>
-      <%= render PageLayouts::FormRowComponent.new do |r| %>
-        <%= r.with_label do %>
-          <%= f.label :name, class: "block text-gray-500 font-semibold pt-2" %>
-        <% end %>
-
-        <%= r.with_input do %>
-          <%= f.text_field :name, class: "max-w-md" %>
-        <% end %>
-      <% end %>
-
-      <%= render PageLayouts::FormRowComponent.new do |r| %>
-        <%= r.with_label do %>
-          <%= f.label :size, class: "block text-gray-500 font-semibold pt-2" %>
-        <% end %>
-
-        <%= r.with_input do %>
-          <%= f.number_field :size, class: "max-w-32" %>
-        <% end %>
-      <% end %>
-
-      <%= render PageLayouts::FormRowComponent.new do |r| %>
-        <%= r.with_label do %>
-          <%= f.label :website, class: "block text-gray-500 font-semibold pt-2" %>
-        <% end %>
-
-        <%= r.with_input do %>
-          <%= f.text_field :website, class: "max-w-xs" %>
-        <% end %>
-      <% end %>
-
-      <%= render PageLayouts::FormRowComponent.new do |r| %>
-        <%= r.with_input do %>
-          <%= tag.button("Save", type: "submit", class: "bg-cyan-500 hover:bg-cyan-700 px-3 py-2 text-white rounded", data: { disable_with: "Saving..." }) %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render "form", company: @company %>
   <% end %>
 <% end %>

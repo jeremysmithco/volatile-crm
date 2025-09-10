@@ -1,49 +1,24 @@
-<%= link_to contact_path(contact), class: "flex flex-col block bg-white shadow rounded-md p-4 divide-y divide-gray-200" do %>
-  <%= tag.div(class: "flex justify-between space-x-2") do %>
+<%= link_to(contact_path(contact), class: wrapper_classes) do %>
+  <%= tag.div(class: body_classes) do %>
     <%= tag.div do %>
-      <%= tag.div(class: "flex items-baseline space-x-2") do %>
-        <%= tag.span(contact.full_name, class: "text-xl font-semibold text-gray-600") %>
-        <%= tag.span(contact.company.name, class: "text-gray-400") %>
+      <%= tag.div(class: header_classes) do %>
+        <%= tag.span(contact.full_name, class: name_classes) %>
+        <%= tag.span(contact.company.name) %>
       <% end %>
 
-      <% if contact.location.present? %>
-        <%= tag.div(class: "flex space-x-2 items-center mt-2") do %>
-          <%= tag.span(render("icons/map-pin"), class: "text-gray-400") %>
-          <%= tag.div(contact.location, class: "text-sm text-gray-500") %>
-        <% end %>
-      <% end %>
-
-      <% if contact.email.present? %>
-        <%= tag.div(class: "flex space-x-2 items-center mt-2") do %>
-          <%= tag.span(render("icons/envelope"), class: "text-gray-400") %>
-          <%= tag.div(contact.email, class: "text-sm text-cyan-500") %>
-        <% end %>
-      <% end %>
-
-      <% if contact.phone.present? %>
-        <%= tag.div(class: "flex space-x-2 items-center mt-2") do %>
-          <%= tag.span(render("icons/phone"), class: "text-gray-400") %>
-          <%= tag.div(contact.phone, class: "text-sm text-gray-500") %>
-        <% end %>
-      <% end %>
+      <%= detail(icon: "map-pin", field: contact.location) %>
+      <%= detail(icon: "envelope", field: contact.email, color: "text-cyan-500") %>
+      <%= detail(icon: "phone", field: contact.phone) %>
     <% end %>
 
-    <%= tag.div(render(AvatarComponent.new(contact: contact))) %>
+    <%= avatar %>
   <% end %>
 
   <% if contact.social? %>
-    <%= tag.div(class: "flex space-x-3 items-center mt-4 pt-4") do %>
-      <% if contact.linkedin.present? %>
-        <%= tag.span(render("icons/linkedin"), class: "text-gray-400") %>
-      <% end %>
-
-      <% if contact.github.present? %>
-        <%= tag.span(render("icons/github"), class: "text-gray-400") %>
-      <% end %>
-
-      <% if contact.twitter.present? %>
-        <%= tag.span(render("icons/twitter"), class: "text-gray-400") %>
-      <% end %>
+    <%= tag.div(class: footer_classes) do %>
+      <%= social(icon: "linkedin", field: contact.linkedin) %>
+      <%= social(icon: "github", field: contact.github) %>
+      <%= social(icon: "twitter", field: contact.twitter) %>
     <% end %>
   <% end %>
 <% end %>

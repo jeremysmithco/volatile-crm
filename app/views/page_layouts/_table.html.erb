@@ -1,0 +1,19 @@
+<table class="min-w-full">
+  <thead class="bg-gray-600">
+    <tr>
+      <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Name</th>
+      <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Size</th>
+      <th class="px-3 py-1.5 text-left text-sm text-white font-semibold">Website</th>
+    </tr>
+  </thead>
+
+  <tbody class="divide-y-2 divide-gray-200">
+    <% companies.each do |company| %>
+      <tr class="bg-gray-50 hover:bg-white">
+        <td class="px-3 py-1.5"><%= link_to company.name, company_path(company), class: "text-cyan-500" %></td>
+        <td class="px-3 py-1.5 text-sm text-gray-500"><%= company.size %></td>
+        <td class="px-3 py-1.5 text-sm"><%= link_to company.website, "", class: "text-cyan-500" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
